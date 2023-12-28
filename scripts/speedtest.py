@@ -22,3 +22,5 @@ try:
             f.write('Date,Time,Ping (ms),Jitter (ms),Download (Mbps),Upload (Mbps)\r\n')
 except:
     pass
+f.write('{},{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y')
+                                       , time.strftime('%H:%M'), ping, jitter, download, upload))
