@@ -63,6 +63,7 @@ query = """from(bucket: "speedtest")
  |> filter(fn: (r) => r._measurement == "internet_speed")"""
 tables = query_api.query(query, org="speedtest")
 
-for table in tables:
-    for record in table.records:
-        print(record)
+#for table in tables:
+#    for record in table.records:
+#        print(record)
+print(speed_data)
