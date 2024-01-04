@@ -56,3 +56,12 @@ write_api.write(bucket=bucket, org="speedtest", record=speed_data)
 
 #client.write_points(speed_data)
 
+query_api = client.query_api()
+
+query = """from(bucket: "speedtest")
+ |> range(start: -10m)"""
+tables = query_api.query(query, org="speedtest")
+
+for table in tables:
+    for record in table.records:
+        print(record)
