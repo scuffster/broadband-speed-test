@@ -21,7 +21,7 @@ for value in range(5):
     write_api.write(bucket=bucket, org="speedtest", record=point)
     time.sleep(1)  # separate points by 1 second
 
-    query_api = client.query_api()
+    query_api = write_client.query_api()
 
     query = """from(bucket: "speedtest")
      |> range(start: -10m)
