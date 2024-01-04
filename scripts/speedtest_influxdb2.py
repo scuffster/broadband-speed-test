@@ -1,4 +1,4 @@
-from influxdb import InfluxDBClient
+#from influxdb import InfluxDBClient
 import influxdb_client, os, time, re
 import subprocess
 from influxdb_client import InfluxDBClient, Point, WritePrecision
