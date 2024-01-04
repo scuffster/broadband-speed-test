@@ -3,6 +3,7 @@ import influxdb_client, os, time, re
 import subprocess
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
+import datetime
 
 token = os.environ.get("INFLUXDB_TOKEN")
 org = "speedtest"
@@ -66,4 +67,5 @@ tables = query_api.query(query, org="speedtest")
 #for table in tables:
 #    for record in table.records:
 #        print(record)
+print(datetime.datetime.now())
 print(speed_data)
