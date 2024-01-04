@@ -6,11 +6,11 @@ token = os.environ.get("INFLUXDB_TOKEN")
 org = "speedtest"
 url = "http://speedy01.local:8086"
 
-write_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
+client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
 bucket = "speedtest"
 
 # write_api = client.write_api(write_options=SYNCHRONOUS)
-write_api = write_client.write_api(write_options=SYNCHRONOUS)
+write_api = client.write_api(write_options=SYNCHRONOUS)
 
 for value in range(5):
     point = (
@@ -21,13 +21,13 @@ for value in range(5):
     write_api.write(bucket=bucket, org="speedtest", record=point)
     time.sleep(1)  # separate points by 1 second
 
-    query_api = write_client.query_api()
+query_api = client.query_api()
 
-    query = """from(bucket: "speedtest")
-     |> range(start: -10m)
-     |> filter(fn: (r) => r._measurement == "measurement1")"""
-    tables = query_api.query(query, org="speedtest")
+query = """from(bucket: "speedtest")
+ |> range(start: -10m)
+ |> filter(fn: (r) => r._measurement == "measurement1")"""
+tables = query_api.query(query, org="speedtest")
 
-    for table in tables:
-        for record in table.records:
-            print(record)
+for table in tables:
+    for record in table.records:
+        print(record)
