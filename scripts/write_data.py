@@ -9,7 +9,8 @@ url = "http://speedy01.local:8086"
 write_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
 bucket = "speedtest"
 
-write_api = client.write_api(write_options=SYNCHRONOUS)
+# write_api = client.write_api(write_options=SYNCHRONOUS)
+write_api = write_client.write_api(write_options=SYNCHRONOUS)
 
 for value in range(5):
     point = (
